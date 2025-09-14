@@ -46,6 +46,11 @@
       z-index: 1;
       position: relative;
     }
+    nav div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+    }
     nav button {
       background-color: #ff6666;
       border: none;
@@ -54,10 +59,16 @@
       cursor: pointer;
       font-weight: bold;
       border-radius: 5px;
+      margin-right: 8px;
     }
     nav button:disabled {
       background-color: #ffcccc;
       cursor: not-allowed;
+    }
+    .countdown {
+      font-size: 0.93em;
+      color: #333;
+      font-weight: bold;
     }
     main {
       padding: 2em;
@@ -89,13 +100,34 @@
   <div class="bg-text">Durga Puja</div>
   <header>Durga Puja Wishes</header>
   <nav>
-    <button id="btn-mahalaya">Mahalaya</button>
-    <button id="btn-panchami">Panchami</button>
-    <button id="btn-shashthi">Shashthi</button>
-    <button id="btn-saptami">Saptami</button>
-    <button id="btn-ashtami">Ashtami</button>
-    <button id="btn-navami">Navami</button>
-    <button id="btn-dashami">Dashami</button>
+    <div>
+      <button id="btn-mahalaya">Mahalaya</button>
+      <span id="countdown-mahalaya" class="countdown"></span>
+    </div>
+    <div>
+      <button id="btn-panchami">Panchami</button>
+      <span id="countdown-panchami" class="countdown"></span>
+    </div>
+    <div>
+      <button id="btn-shashthi">Shashthi</button>
+      <span id="countdown-shashthi" class="countdown"></span>
+    </div>
+    <div>
+      <button id="btn-saptami">Saptami</button>
+      <span id="countdown-saptami" class="countdown"></span>
+    </div>
+    <div>
+      <button id="btn-ashtami">Ashtami</button>
+      <span id="countdown-ashtami" class="countdown"></span>
+    </div>
+    <div>
+      <button id="btn-navami">Navami</button>
+      <span id="countdown-navami" class="countdown"></span>
+    </div>
+    <div>
+      <button id="btn-dashami">Dashami</button>
+      <span id="countdown-dashami" class="countdown"></span>
+    </div>
   </nav>
   <main>
     <div id="welcome"></div>
@@ -130,7 +162,6 @@
   </main>
   <footer id="footerCredit">Made by Pratik</footer>
   <script>
-    // Date definitions (year, month (0-based), date)
     const days = {
       mahalaya: new Date(2025, 8, 21),
       panchami: new Date(2025, 8, 27),
@@ -141,35 +172,65 @@
       dashami: new Date(2025, 9, 2)
     };
 
-    // Prompt name once at start
     let userName = prompt("Please enter your name to get your personalized Durga Puja wishes:");
-    if (!userName) {
-      userName = "Guest";
-    }
+    if (!userName) userName = "Guest";
     const welcomeDiv = document.getElementById('welcome');
     welcomeDiv.textContent = "Welcome, " + userName + "! Click any day for your wishes.";
-    document.getElementById('footerCredit').textContent = "Made by " + userName;
 
-    // Utility: allow button if today is valid for its festival
-    function enableButton(button, key) {
-      const today = new Date();
-      today.setHours(0,0,0,0);
-      const targetDate = new Date(days[key]);
-      targetDate.setHours(0,0,0,0);
+    // DO NOT update the footer. It always says "Made by Pratik".
 
-      // Enable on calendar date only
-      button.disabled = !(today.getFullYear() === targetDate.getFullYear() &&
-                          today.getMonth() === targetDate.getMonth() &&
-                          today.getDate() === targetDate.getDate());
+    function pad(n) {
+      return n < 10 ? "0" + n : n;
     }
 
-    enableButton(document.getElementById('btn-mahalaya'), "mahalaya");
-    enableButton(document.getElementById('btn-panchami'), "panchami");
-    enableButton(document.getElementById('btn-shashthi'), "shashthi");
-    enableButton(document.getElementById('btn-saptami'), "saptami");
-    enableButton(document.getElementById('btn-ashtami'), "ashtami");
-    enableButton(document.getElementById('btn-navami'), "navami");
-    enableButton(document.getElementById('btn-dashami'), "dashami");
+    // Updates counter and enables buttons for today only
+    function updateCountdown(dayKey, btnId, countdownId) {
+      const now = new Date();
+      now.setSeconds(0,0);
+      const btn = document.getElementById(btnId);
+      const countdown = document.getElementById(countdownId);
+
+      const dayDate = new Date(days[dayKey]);
+      dayDate.setHours(0,0,0,0);
+
+      const todayStr = now.getFullYear() + "-" + now.getMonth() + "-" + now.getDate();
+      const dayStr = dayDate.getFullYear() + "-" + dayDate.getMonth() + "-" + dayDate.getDate();
+      const onDay = todayStr === dayStr;
+
+      // Button enabled only midnight to midnight (calendar day)
+      btn.disabled = !onDay;
+
+      if (onDay) {
+        countdown.textContent = "Started!";
+      } else {
+        // Countdown: time left until festival day at 00:00
+        let target = new Date(days[dayKey]);
+        target.setHours(0,0,0,0);
+        let distance = target - now;
+
+        if (distance > 0) {
+          let daysLeft = Math.floor(distance / (1000 * 60 * 60 * 24));
+          let hoursLeft = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          let minLeft = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          let secLeft = Math.floor((distance % (1000 * 60)) / 1000);
+          countdown.textContent = Starts in: ${pad(daysLeft)}d ${pad(hoursLeft)}h ${pad(minLeft)}m ${pad(secLeft)}s;
+        } else {
+          countdown.textContent = "Not available yet!";
+        }
+      }
+    }
+
+    function runCounters() {
+      updateCountdown("mahalaya", "btn-mahalaya", "countdown-mahalaya");
+      updateCountdown("panchami", "btn-panchami", "countdown-panchami");
+      updateCountdown("shashthi", "btn-shashthi", "countdown-shashthi");
+      updateCountdown("saptami", "btn-saptami", "countdown-saptami");
+      updateCountdown("ashtami", "btn-ashtami", "countdown-ashtami");
+      updateCountdown("navami", "btn-navami", "countdown-navami");
+      updateCountdown("dashami", "btn-dashami", "countdown-dashami");
+    }
+    runCounters();
+    setInterval(runCounters, 1000);
 
     function showDay(dayId) {
       welcomeDiv.textContent = "Happy " + capitalize(dayId) + ", " + userName + "!";
@@ -192,4 +253,3 @@
   </script>
 </body>
 </html>
-
