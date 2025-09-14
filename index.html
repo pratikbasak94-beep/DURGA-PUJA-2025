@@ -106,3 +106,57 @@
       <p>May the divine blessings of Maa Durga be with you today and always.</p>
     </div>
     <div id="panchami" class="day-content">
+      <h2>Happy Panchami!</h2>
+      <p>May Maa Durga's grace fill your life this Panchami day.</p>
+    </div>
+    <div id="shashthi" class="day-content">
+      <h2>Happy Shashthi!</h2>
+      <p>Wishing you strength and happiness on this auspicious day.</p>
+    </div>
+    <div id="saptami" class="day-content">
+      <h2>Happy Saptami!</h2>
+      <p>May Maa Durga bless you with prosperity and joy.</p>
+    </div>
+    <div id="ashtami" class="day-content">
+      <h2>Happy Ashtami!</h2>
+      <p>Celebrate the victory of good over evil with love and devotion.</p>
+    </div>
+    <div id="navami" class="day-content">
+      <h2>Happy Navami!</h2>
+      <p>May your life be filled with divine blessings and peace.</p>
+    </div>
+    <div id="dashami" class="day-content">
+      <h2>Happy Dashami!</h2>
+      <p>Wishing you farewell to negativity and a fresh start.</p>
+    </div>
+  </main>
+  <footer>Made by <span style="color: rgb(0, 128, 255);">Pratik</span></footer>
+  <script>
+    let userName = prompt("Please enter your name to get your personalized Durga Puja wishes:");
+    if (!userName) {
+      userName = "Guest";
+    }
+    const welcomeDiv = document.getElementById('welcome');
+    welcomeDiv.textContent = "Welcome, " + userName + "! Click any day for your greeting.";
+
+    function showDay(dayId) {
+      welcomeDiv.textContent = "Happy " + capitalize(dayId) + ", " + userName + "!";
+      const dayContents = document.querySelectorAll('.day-content');
+      dayContents.forEach(dc => dc.style.display = 'none');
+      document.getElementById(dayId).style.display = 'block';
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    document.getElementById('btn-mahalaya').onclick = () => showDay('mahalaya');
+    document.getElementById('btn-panchami').onclick = () => showDay('panchami');
+    document.getElementById('btn-shashthi').onclick = () => showDay('shashthi');
+    document.getElementById('btn-saptami').onclick = () => showDay('saptami');
+    document.getElementById('btn-ashtami').onclick = () => showDay('ashtami');
+    document.getElementById('btn-navami').onclick = () => showDay('navami');
+    document.getElementById('btn-dashami').onclick = () => showDay('dashami');
+  </script>
+</body>
+</html>
