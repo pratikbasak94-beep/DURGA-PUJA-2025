@@ -133,35 +133,36 @@
     <div id="welcome"></div>
     <div id="mahalaya" class="day-content">
       <h2>Happy Mahalaya!</h2>
-      <p>May the divine blessings of Maa Durga be with you today and always.</p>
+      <p id="msg-mahalaya"></p>
     </div>
     <div id="panchami" class="day-content">
       <h2>Happy Panchami!</h2>
-      <p>May Maa Durga's grace fill your life this Panchami day.</p>
+      <p id="msg-panchami"></p>
     </div>
     <div id="shashthi" class="day-content">
       <h2>Happy Shashthi!</h2>
-      <p>Wishing you strength and happiness on this auspicious day.</p>
+      <p id="msg-shashthi"></p>
     </div>
     <div id="saptami" class="day-content">
       <h2>Happy Saptami!</h2>
-      <p>May Maa Durga bless you with prosperity and joy.</p>
+      <p id="msg-saptami"></p>
     </div>
     <div id="ashtami" class="day-content">
       <h2>Happy Ashtami!</h2>
-      <p>Celebrate the victory of good over evil with love and devotion.</p>
+      <p id="msg-ashtami"></p>
     </div>
     <div id="navami" class="day-content">
       <h2>Happy Navami!</h2>
-      <p>May your life be filled with divine blessings and peace.</p>
+      <p id="msg-navami"></p>
     </div>
     <div id="dashami" class="day-content">
       <h2>Happy Dashami!</h2>
-      <p>Wishing you farewell to negativity and a fresh start.</p>
+      <p id="msg-dashami"></p>
     </div>
   </main>
   <footer id="footerCredit">Made by Pratik</footer>
   <script>
+    // Festival Dates (year, month-0-based, date)
     const days = {
       mahalaya: new Date(2025, 8, 21),
       panchami: new Date(2025, 8, 27),
@@ -172,18 +173,25 @@
       dashami: new Date(2025, 9, 2)
     };
 
+    // Personalized wish messages
+    const wishMessages = {
+      mahalaya: "May the divine blessings of Maa Durga be with you today and always.",
+      panchami: "May Maa Durga's grace fill your life this Panchami day.",
+      shashthi: "Wishing you strength and happiness on this auspicious day.",
+      saptami: "May Maa Durga bless you with prosperity and joy.",
+      ashtami: "Celebrate the victory of good over evil with love and devotion.",
+      navami: "May your life be filled with divine blessings and peace.",
+      dashami: "Wishing you farewell to negativity and a fresh start."
+    };
+
     let userName = prompt("Please enter your name to get your personalized Durga Puja wishes:");
     if (!userName) userName = "Guest";
     const welcomeDiv = document.getElementById('welcome');
     welcomeDiv.textContent = "Welcome, " + userName + "! Click any day for your wishes.";
 
-    // DO NOT update the footer. It always says "Made by Pratik".
-
     function pad(n) {
       return n < 10 ? "0" + n : n;
     }
-
-    // Updates counter and enables buttons for today only
     function updateCountdown(dayKey, btnId, countdownId) {
       const now = new Date();
       now.setSeconds(0,0);
@@ -197,13 +205,11 @@
       const dayStr = dayDate.getFullYear() + "-" + dayDate.getMonth() + "-" + dayDate.getDate();
       const onDay = todayStr === dayStr;
 
-      // Button enabled only midnight to midnight (calendar day)
       btn.disabled = !onDay;
 
       if (onDay) {
         countdown.textContent = "Started!";
       } else {
-        // Countdown: time left until festival day at 00:00
         let target = new Date(days[dayKey]);
         target.setHours(0,0,0,0);
         let distance = target - now;
@@ -219,7 +225,6 @@
         }
       }
     }
-
     function runCounters() {
       updateCountdown("mahalaya", "btn-mahalaya", "countdown-mahalaya");
       updateCountdown("panchami", "btn-panchami", "countdown-panchami");
@@ -232,13 +237,14 @@
     runCounters();
     setInterval(runCounters, 1000);
 
+    // Show personalized wish for chosen day
     function showDay(dayId) {
       welcomeDiv.textContent = "Happy " + capitalize(dayId) + ", " + userName + "!";
       const dayContents = document.querySelectorAll('.day-content');
       dayContents.forEach(dc => dc.style.display = 'none');
       document.getElementById(dayId).style.display = 'block';
+      document.getElementById("msg-" + dayId).textContent = wishMessages[dayId] + " " + userName + "!";
     }
-
     function capitalize(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
