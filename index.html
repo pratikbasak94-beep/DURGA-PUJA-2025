@@ -50,14 +50,18 @@
       background-color: #ff6666;
       border: none;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 24px;
       cursor: pointer;
       font-weight: bold;
       border-radius: 5px;
+      margin-bottom: 8px;
+      font-size: 1.08em;
+      transition: background 0.2s;
     }
     nav button:disabled {
       background-color: #ffcccc;
       cursor: not-allowed;
+      color: #555;
     }
     main {
       padding: 2em;
@@ -83,6 +87,30 @@
       width: 100%;
       z-index: 1;
     }
+    /* MOBILE FRIENDLY */
+    @media (max-width: 700px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5em;
+      }
+      nav button {
+        width: 90vw;
+        max-width: 350px;
+        font-size: 1.07em;
+        margin-bottom: 12px;
+      }
+      main {
+        padding: 1em;
+        max-width: 96vw;
+        border-radius: 0;
+        margin: 1em auto;
+        font-size: 1.08em;
+      }
+      .bg-text {
+        font-size: 11vw;
+      }
+    }
   </style>
 </head>
 <body>
@@ -101,31 +129,31 @@
     <div id="welcome"></div>
     <div id="mahalaya" class="day-content">
       <h2>Happy Mahalaya!</h2>
-      <p>May the divine blessings of Maa Durga be with you today and always.</p>
+      <p>May the divine blessings of Maa Durga be with you today and always, <span id="name-mahalaya"></span>!</p>
     </div>
     <div id="panchami" class="day-content">
       <h2>Happy Panchami!</h2>
-      <p>May Maa Durga's grace fill your life this Panchami day.</p>
+      <p>May Maa Durga's grace fill your life this Panchami day, <span id="name-panchami"></span>!</p>
     </div>
     <div id="shashthi" class="day-content">
       <h2>Happy Shashthi!</h2>
-      <p>Wishing you strength and happiness on this auspicious day.</p>
+      <p>Wishing you strength and happiness on this auspicious day, <span id="name-shashthi"></span>!</p>
     </div>
     <div id="saptami" class="day-content">
       <h2>Happy Saptami!</h2>
-      <p>May Maa Durga bless you with prosperity and joy.</p>
+      <p>May Maa Durga bless you with prosperity and joy, <span id="name-saptami"></span>!</p>
     </div>
     <div id="ashtami" class="day-content">
       <h2>Happy Ashtami!</h2>
-      <p>Celebrate the victory of good over evil with love and devotion.</p>
+      <p>Celebrate the victory of good over evil with love and devotion, <span id="name-ashtami"></span>!</p>
     </div>
     <div id="navami" class="day-content">
       <h2>Happy Navami!</h2>
-      <p>May your life be filled with divine blessings and peace.</p>
+      <p>May your life be filled with divine blessings and peace, <span id="name-navami"></span>!</p>
     </div>
     <div id="dashami" class="day-content">
       <h2>Happy Dashami!</h2>
-      <p>Wishing you farewell to negativity and a fresh start.</p>
+      <p>Wishing you farewell to negativity and a fresh start, <span id="name-dashami"></span>!</p>
     </div>
   </main>
   <footer id="footerCredit">Made by Pratik</footer>
@@ -143,21 +171,18 @@
     let userName = prompt("Please enter your name for personalized Durga Puja wishes:");
     if (!userName) userName = "Guest";
     const welcomeDiv = document.getElementById('welcome');
-    welcomeDiv.textContent = "Welcome, " + userName + "! Click any day for your wishes.";
+    welcomeDiv.textContent = "Welcome, " + userName + "! Click any festival day for your wishes.";
 
-    // Button enable logic
     function enableButtons() {
       const today = new Date();
       today.setHours(0,0,0,0);
 
-      // Mahalaya: allow from today (when user visits) until 21 Sep inclusive
-      const mahalayaStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      // Mahalaya opens from "today" until 21 Sep inclusive
       const mahalayaEnd = new Date(2025, 8, 21);
       mahalayaEnd.setHours(0,0,0,0);
-      const isMahalayaOpen = today <= mahalayaEnd;
-      document.getElementById('btn-mahalaya').disabled = !isMahalayaOpen;
+      document.getElementById('btn-mahalaya').disabled = today > mahalayaEnd;
 
-      // Other days: enable only on that calendar date
+      // Other days: only on their calendar date
       Object.entries(days).forEach(([key, date]) => {
         date = new Date(date);
         date.setHours(0,0,0,0);
@@ -176,6 +201,10 @@
       const dayContents = document.querySelectorAll('.day-content');
       dayContents.forEach(dc => dc.style.display = 'none');
       document.getElementById(dayId).style.display = 'block';
+      // Personalize each message!
+      if (document.getElementById("name-" + dayId)) {
+        document.getElementById("name-" + dayId).textContent = userName;
+      }
     }
 
     function capitalize(str) {
@@ -192,3 +221,4 @@
   </script>
 </body>
 </html>
+
