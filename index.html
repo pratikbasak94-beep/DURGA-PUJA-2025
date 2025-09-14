@@ -10,8 +10,6 @@
       color: #333;
       margin: 0;
       padding: 0;
-      height: 100vh;
-      position: relative;
       background: linear-gradient(135deg, #f44336 60%, #ffeb3b 100%);
       overflow: hidden;
     }
@@ -30,7 +28,7 @@
       white-space: nowrap;
     }
     header {
-      background-color: rgba(255, 77, 77, 0.8);
+      background-color: rgba(255,77,77,0.8);
       color: white;
       padding: 1em;
       text-align: center;
@@ -39,7 +37,7 @@
       position: relative;
     }
     nav {
-      background: rgba(255, 230, 230, 0.8);
+      background: rgba(255,230,230,0.8);
       padding: 0.5em;
       display: flex;
       justify-content: center;
@@ -64,7 +62,7 @@
     main {
       padding: 2em;
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.6);
+      background-color: rgba(255,255,255,0.6);
       border-radius: 10px;
       max-width: 600px;
       margin: 2em auto;
@@ -75,8 +73,8 @@
       display: none;
     }
     footer {
-      background-color: rgba(255, 77, 77, 0.8);
-      color: rgb(255, 215, 0);
+      background-color: rgba(255,77,77,0.8);
+      color: rgb(255,215,0);
       text-align: center;
       padding: 1em;
       font-weight: bold;
@@ -130,14 +128,48 @@
       <p>Wishing you farewell to negativity and a fresh start.</p>
     </div>
   </main>
-  <footer>Made by <span style="color: rgb(0, 128, 255);">Pratik</span></footer>
+  <footer id="footerCredit">Made by Pratik</footer>
   <script>
+    // Date definitions (year, month (0-based), date)
+    const days = {
+      mahalaya: new Date(2025, 8, 21),
+      panchami: new Date(2025, 8, 27),
+      shashthi: new Date(2025, 8, 28),
+      saptami: new Date(2025, 8, 29),
+      ashtami: new Date(2025, 8, 30),
+      navami: new Date(2025, 9, 1),
+      dashami: new Date(2025, 9, 2)
+    };
+
+    // Prompt name once at start
     let userName = prompt("Please enter your name to get your personalized Durga Puja wishes:");
     if (!userName) {
       userName = "Guest";
     }
     const welcomeDiv = document.getElementById('welcome');
-    welcomeDiv.textContent = "Welcome, " + userName + "! Click any day for your greeting.";
+    welcomeDiv.textContent = "Welcome, " + userName + "! Click any day for your wishes.";
+    document.getElementById('footerCredit').textContent = "Made by " + userName;
+
+    // Utility: allow button if today is valid for its festival
+    function enableButton(button, key) {
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const targetDate = new Date(days[key]);
+      targetDate.setHours(0,0,0,0);
+
+      // Enable on calendar date only
+      button.disabled = !(today.getFullYear() === targetDate.getFullYear() &&
+                          today.getMonth() === targetDate.getMonth() &&
+                          today.getDate() === targetDate.getDate());
+    }
+
+    enableButton(document.getElementById('btn-mahalaya'), "mahalaya");
+    enableButton(document.getElementById('btn-panchami'), "panchami");
+    enableButton(document.getElementById('btn-shashthi'), "shashthi");
+    enableButton(document.getElementById('btn-saptami'), "saptami");
+    enableButton(document.getElementById('btn-ashtami'), "ashtami");
+    enableButton(document.getElementById('btn-navami'), "navami");
+    enableButton(document.getElementById('btn-dashami'), "dashami");
 
     function showDay(dayId) {
       welcomeDiv.textContent = "Happy " + capitalize(dayId) + ", " + userName + "!";
@@ -160,3 +192,4 @@
   </script>
 </body>
 </html>
+
