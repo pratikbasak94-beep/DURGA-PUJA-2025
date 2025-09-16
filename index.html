@@ -13,7 +13,6 @@
       background: #faf2e8;
       color: #222;
       overflow-x: hidden;
-      transition: background 0.5s, color 0.5s;
     }
     .kite-bg {
       position: fixed;
@@ -44,23 +43,42 @@
       z-index: 2;
       max-width: 420px;
       margin: 3rem auto 5rem auto;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255,255,255,0.97);
       border-radius: 16px;
-      padding: 2.5rem 1.7rem 2rem 1.7rem;
+      padding: 2.2rem 1.3rem 2rem 1.3rem;
       box-shadow: 0 6px 29px rgba(72,72,72,0.12);
       text-align: center;
-      display: none;
+      display: block;
     }
     h1 {
       font-family: 'Jomhuria', cursive;
-      font-size: 2.45rem;
-      margin-bottom: 1rem;
+      font-size: 2.15rem;
+      margin-bottom: 1.5rem;
       color: #10327c;
       letter-spacing: 1px;
       user-select: none;
     }
-    #wish {
-      margin-top: 22px;
+    #getWishBtn {
+      width: 80%;
+      max-width: 300px;
+      margin: 1.3rem auto 1.1rem auto;
+      display: inline-block;
+      padding: 15px 0;
+      font-size: 19px;
+      border-radius: 8px;
+      border: none;
+      background: #1e90ff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 1px 7px rgba(45,75,180,0.13);
+      transition: background .28s;
+    }
+    #getWishBtn:hover, #getWishBtn:focus {
+      background: #0b66c2;
+    }
+    #wishResult {
+      margin-top: 24px;
       font-size: 21px;
       font-weight: 700;
       min-height: 54px;
@@ -97,8 +115,8 @@
     /* Modal styles */
     .modal-back {
       position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.6); z-index:999;
-      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.58); z-index:999;
+      display: none; align-items: center; justify-content: center;
     }
     .modal {
       background: #fff;
@@ -107,7 +125,6 @@
       box-shadow: 0 4px 16px rgba(5, 10, 55, 0.17);
       text-align: center;
       min-width: 280px; max-width: 93vw; min-height: 180px;
-      z-index:1000;
     }
     .modal input[type="text"] {
       margin-top: 1.2rem;
@@ -133,7 +150,10 @@
       cursor:not-allowed;
     }
     .modal-label{font-size:1.17rem;margin-top:8px;font-weight:600;}
-    @media(max-width:580px){.modal{padding:1rem;margin:0;}}
+    @media(max-width:580px){
+      .container{margin:1.4rem 5vw 4rem 5vw;padding:1.4rem 6vw 1.3rem 6vw;}
+      .modal{padding:0.5rem;margin:0;}
+    }
   </style>
 </head>
 <body>
@@ -150,22 +170,21 @@
     <polygon points="21,0 42,21 21,42 0,21" fill="#ffed5c" stroke="#fff" stroke-width="3"/>
     <line x1="21" y1="42" x2="21" y2="54" stroke="#36bf74" stroke-width="4"/>
   </svg>
-  <!-- Modal asks for name -->
+  <div class="container">
+    <h1 id="title">Vishwakarma Puja Wishes ✨</h1>
+    <button id="getWishBtn">Get Your Puja Wish</button>
+    <div id="wishResult"></div>
+  </div>
   <div class="modal-back" id="modalBack">
     <div class="modal">
       <div class="modal-label">What's your name?</div>
       <input id="modalNameInput" type="text" placeholder="Enter your name" autocomplete="off" />
-      <div id="modalFeedback" class="feedback"></div>
       <button id="modalSubmitBtn" disabled>Show My Wish</button>
     </div>
   </div>
-  <div class="container" role="main" aria-labelledby="title">
-    <h1 id="title">Vishwakarma Puja Wishes ✨</h1>
-    <div id="wish" aria-live="polite"></div>
-  </div>
   <footer>Made by PRATIK</footer>
   <script>
-    // Festive wish templates
+    // Wishes
     const wishes = [
       "wishing you a blessed and prosperous Vishwakarma Puja! May your creativity and craftsmanship bring you success and happiness.",
       "may Lord Vishwakarma bless your hands with skill and your heart with peace this Puja.",
@@ -173,28 +192,37 @@
       "may your hard work and talent shine bright with Vishwakarma's blessings.",
       "hope your Vishwakarma Puja is filled with joy, inspiration, and beautiful creations ahead."
     ];
+    const getWishBtn = document.getElementById('getWishBtn');
+    const wishResult = document.getElementById('wishResult');
     const modalBack = document.getElementById('modalBack');
     const modalNameInput = document.getElementById('modalNameInput');
-    const modalFeedback = document.getElementById('modalFeedback');
     const modalSubmitBtn = document.getElementById('modalSubmitBtn');
-    const container = document.querySelector('.container');
-    const wishDiv = document.getElementById('wish');
     const audio = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
+    // Allow any non-blank name
     function validateName(name) {
-      return /^[A-Za-z\s]{1,40}$/.test(name.trim());
+      return name.trim().length > 0;
     }
-    function randomInt(max) {
-      return Math.floor(Math.random() * max);
-    }
-    function styleWish(name) {
+    // Button click: ask for name
+    getWishBtn.addEventListener('click', () => {
+      modalBack.style.display = "flex";
+      modalNameInput.value = "";
+      modalSubmitBtn.disabled = true;
+      wishResult.textContent = "";
+    });
+    modalNameInput.addEventListener('input', () => {
+      modalSubmitBtn.disabled = !validateName(modalNameInput.value);
+    });
+    modalSubmitBtn.addEventListener('click', () => {
+      modalBack.style.display = "none";
+      const name = modalNameInput.value.trim();
+      const wishText = wishes[Math.floor(Math.random() * wishes.length)];
       const colors = ['#FF6347','#FFD700','#00FA9A','#1E90FF','#FF69B4','#FF8C00','#00CED1','#ff7c2a','#ff32a7'];
-      let sum = 0;
-      for(let ch of name) sum += ch.charCodeAt(0);
-      return colors[sum % colors.length];
-    }
-    function createConfetti() {
-      const confettiCount = 85;
-      for(let i = 0; i < confettiCount; i++) {
+      let sum = 0; for(let ch of name) sum += ch.charCodeAt(0);
+      wishResult.textContent = Dear ${name}, ${wishText};
+      wishResult.style.color = colors[sum % colors.length];
+      audio.currentTime = 0; audio.play();
+      // Confetti
+      for(let i = 0; i < 85; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
         confetti.style.left = Math.random() * 100 + 'vw';
@@ -204,24 +232,6 @@
         document.body.appendChild(confetti);
         setTimeout(() => confetti.remove(), 2300);
       }
-    }
-    modalNameInput.addEventListener('input', () => {
-      const val = modalNameInput.value.trim();
-      modalSubmitBtn.disabled = !validateName(val);
-      modalFeedback.textContent = val.length === 0 ? "" : (validateName(val) ? "Looks good!" : "Letters and spaces only.");
-      modalFeedback.className = 'feedback ' + (validateName(val) ? 'valid' : 'invalid');
-    });
-    modalSubmitBtn.addEventListener('click', () => {
-      // Hide modal, show wishes page + wish immediately
-      container.style.display = "";
-      modalBack.style.display = "none";
-      const name = modalNameInput.value.trim();
-      const wishText = wishes[randomInt(wishes.length)];
-      const styledColor = styleWish(name);
-      wishDiv.textContent = Dear ${name}, ${wishText};
-      wishDiv.style.color = styledColor;
-      audio.currentTime = 0; audio.play();
-      createConfetti();
     });
   </script>
 </body>
