@@ -20,7 +20,7 @@
     }
     .kite-bg {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: 0;
       background: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80') center center no-repeat;
       background-size: cover;
@@ -32,12 +32,18 @@
       50% { background-position: center 40px; }
       100% { background-position: center 0; }
     }
-    .kite-overlay {
+    /* Floating kite SVG animation */
+    .kite-anim {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
       z-index: 1;
-      background: rgba(255,255,255,0.09);
       pointer-events: none;
+      animation: drift 12s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+    }
+    @keyframes drift {
+      0% {transform: translateY(80vh) scale(1);}
+      60% {transform: translateY(20vh) scale(1.16);}
+      90% {transform: translateY(-10vh) scale(1);}
+      100% {transform: translateY(80vh);}
     }
     .container {
       position: relative;
@@ -96,7 +102,6 @@
     }
     .feedback.valid { color: #21ce34; }
     .feedback.invalid { color: #f34336; }
-
     button {
       width: 100%;
       padding: 14px 0;
@@ -129,7 +134,6 @@
     #shareBtn:hover {
       background: #199c31;
     }
-
     #wish {
       margin-top: 22px;
       font-size: 21px;
@@ -139,7 +143,6 @@
       text-align: center;
       line-height: 1.5;
     }
-
     .confetti {
       position: fixed;
       width: 10px; height: 10px;
@@ -152,7 +155,6 @@
     @keyframes fall {
       to { transform: translateY(100vh) rotate(370deg); opacity: 0;}
     }
-
     footer {
       position: fixed;
       bottom: 0; left: 0; right: 0;
@@ -167,8 +169,6 @@
       letter-spacing: 1px;
       z-index: 100;
     }
-
-    /* Dark mode tweaks */
     body.dark {
       background: #222b43;
       color: #f7f7f7;
@@ -197,7 +197,19 @@
 </head>
 <body>
   <div class="kite-bg"></div>
-  <div class="kite-overlay"></div>
+  <!-- Animated SVG kites floating -->
+  <svg class="kite-anim" style="left:7vw;top:0;width:57px;height:57px;animation-delay:1.2s;">
+    <polygon points="28,0 56,28 28,56 0,28" fill="#ff7097" stroke="#fff" stroke-width="3"/>
+    <line x1="28" y1="56" x2="28" y2="70" stroke="#6dc459" stroke-width="4"/>
+  </svg>
+  <svg class="kite-anim" style="left:45vw;top:0;width:47px;height:47px;animation-delay:3s;">
+    <polygon points="23,0 46,23 23,46 0,23" fill="#42e8e0" stroke="#fff" stroke-width="3"/>
+    <line x1="23" y1="46" x2="23" y2="60" stroke="#ffad2c" stroke-width="4"/>
+  </svg>
+  <svg class="kite-anim" style="left:82vw;top:0;width:42px;height:42px;animation-delay:5.2s;">
+    <polygon points="21,0 42,21 21,42 0,21" fill="#ffed5c" stroke="#fff" stroke-width="3"/>
+    <line x1="21" y1="42" x2="21" y2="54" stroke="#36bf74" stroke-width="4"/>
+  </svg>
   <div class="container" role="main" aria-labelledby="title">
     <h1 id="title">Vishwakarma Puja Wishes ✨</h1>
     <div class="toggle-container">
@@ -314,8 +326,7 @@
         body.classList.remove('dark');
       }
     });
+    // --- Date restriction removed (active from 16 Sep onward) ---
   </script>
 </body>
 </html>
-
-
