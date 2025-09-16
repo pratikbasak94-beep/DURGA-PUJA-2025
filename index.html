@@ -5,74 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vishwakarma Puja Wishes</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Work+Sans:wght@400;700&display=swap');
     body {
       margin: 0;
-      font-family: 'Work Sans', sans-serif;
+      font-family: sans-serif;
       min-height: 100vh;
       background: #faf2e8;
       color: #222;
       overflow-x: hidden;
-    }
-    .kite-bg {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: 0;
-      background: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80') center center no-repeat;
-      background-size: cover;
-      filter: brightness(1.05);
-      animation: kiteMove 24s linear infinite;
-    }
-    @keyframes kiteMove {
-      0% { background-position: center 0; }
-      50% { background-position: center 40px; }
-      100% { background-position: center 0; }
-    }
-    .kite-anim {
-      position: fixed; z-index: 1; pointer-events: none;
-      animation: drift 12s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-    }
-    @keyframes drift {
-      0% {transform: translateY(80vh) scale(1);}
-      60% {transform: translateY(20vh) scale(1.16);}
-      90% {transform: translateY(-10vh) scale(1);}
-      100% {transform: translateY(80vh);}
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     .container {
-      position: relative;
-      z-index: 2;
-      max-width: 420px;
-      margin: 3rem auto 5rem auto;
+      margin-top: 3vw;
       background: rgba(255,255,255,0.97);
       border-radius: 16px;
-      padding: 2.2rem 1.3rem 2rem 1.3rem;
+      padding: 2.2rem 1.3rem;
       box-shadow: 0 6px 29px rgba(72,72,72,0.12);
       text-align: center;
-      display: block;
     }
     h1 {
-      font-family: 'Jomhuria', cursive;
-      font-size: 2.15rem;
+      font-size: 2rem;
       margin-bottom: 1.5rem;
       color: #10327c;
-      letter-spacing: 1px;
-      user-select: none;
     }
     #getWishBtn {
-      width: 80%;
-      max-width: 300px;
-      margin: 1.3rem auto 1.1rem auto;
-      display: inline-block;
-      padding: 15px 0;
-      font-size: 19px;
+      padding: 13px 28px;
+      font-size: 1.25rem;
       border-radius: 8px;
       border: none;
       background: #1e90ff;
       color: white;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 1px 7px rgba(45,75,180,0.13);
-      transition: background .28s;
+      margin-bottom: 1rem;
     }
     #getWishBtn:hover, #getWishBtn:focus {
       background: #0b66c2;
@@ -82,21 +49,52 @@
       font-size: 21px;
       font-weight: 700;
       min-height: 54px;
-      user-select: text;
-      text-align: center;
-      line-height: 1.5;
+      color: #b15319;
     }
-    .confetti {
+    .modal-back {
       position: fixed;
-      width: 10px; height: 10px;
-      opacity: 0.93;
-      z-index: 99;
-      pointer-events: none;
-      border-radius: 50%;
-      animation: fall 2.3s linear forwards;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(32,32,32,0.41);
+      z-index:999;
+      display: none;
+      align-items: center;
+      justify-content: center;
     }
-    @keyframes fall {
-      to { transform: translateY(100vh) rotate(370deg); opacity: 0;}
+    .modal {
+      background: #fff;
+      padding: 2rem 1.7rem;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(5, 10, 55, 0.14);
+      text-align: center;
+      min-width: 260px;
+    }
+    .modal input[type="text"] {
+      margin-top: 0.9rem;
+      padding: 11px 14px;
+      font-size: 17px;
+      width: 88%;
+      border-radius: 8px;
+      border: 1.2px solid #b2bde7;
+      margin-bottom: 1.2rem;
+    }
+    .modal button {
+      padding: 11px 0;
+      width: 100%;
+      border-radius: 7px;
+      background: #0b66c2;
+      color: white; font-size: 1rem;font-weight:600;border:none;
+      cursor:pointer;
+      transition: background .21s;
+    }
+    .modal button:disabled {
+      background: #a3b0d5;
+      cursor:not-allowed;
+    }
+    .modal-label{font-size:1.07rem;margin-top:8px;font-weight:600;}
+    @media(max-width:540px){
+      .container{margin-top:2vw;padding:1rem;}
+      h1{font-size:1.4rem;}
+      .modal{padding:1rem;}
     }
     footer {
       position: fixed;
@@ -109,69 +107,14 @@
       background: rgba(0,0,0,0.39);
       font-family: monospace;
       user-select: none;
-      letter-spacing: 1px;
       z-index: 100;
-    }
-    /* Modal styles */
-    .modal-back {
-      position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.58); z-index:999;
-      display: none; align-items: center; justify-content: center;
-    }
-    .modal {
-      background: #fff;
-      padding: 2rem 1.7rem 1.2rem 1.7rem;
-      border-radius: 14px;
-      box-shadow: 0 4px 16px rgba(5, 10, 55, 0.17);
-      text-align: center;
-      min-width: 280px; max-width: 93vw; min-height: 180px;
-    }
-    .modal input[type="text"] {
-      margin-top: 1.2rem;
-      padding: 11px 14px;
-      font-size: 17px;
-      width: 85%;
-      border-radius: 8px;
-      border: 1.2px solid #dbeefe;
-      box-shadow: 0 2px 4px #eaf3ff81;
-    }
-    .modal button {
-      margin-top: 1.2rem;
-      padding: 12px 0;
-      width: 83%;
-      border-radius: 7px;
-      background: #0b66c2;
-      color: white; font-size: 17px;font-weight:700;border:none;
-      cursor:pointer;
-      transition: background .23s;
-    }
-    .modal button:disabled {
-      background: #7e9ac4;
-      cursor:not-allowed;
-    }
-    .modal-label{font-size:1.17rem;margin-top:8px;font-weight:600;}
-    @media(max-width:580px){
-      .container{margin:1.4rem 5vw 4rem 5vw;padding:1.4rem 6vw 1.3rem 6vw;}
-      .modal{padding:0.5rem;margin:0;}
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
-  <div class="kite-bg"></div>
-  <svg class="kite-anim" style="left:7vw;top:0;width:57px;height:57px;animation-delay:1.2s;">
-    <polygon points="28,0 56,28 28,56 0,28" fill="#ff7097" stroke="#fff" stroke-width="3"/>
-    <line x1="28" y1="56" x2="28" y2="70" stroke="#6dc459" stroke-width="4"/>
-  </svg>
-  <svg class="kite-anim" style="left:45vw;top:0;width:47px;height:47px;animation-delay:3s;">
-    <polygon points="23,0 46,23 23,46 0,23" fill="#42e8e0" stroke="#fff" stroke-width="3"/>
-    <line x1="23" y1="46" x2="23" y2="60" stroke="#ffad2c" stroke-width="4"/>
-  </svg>
-  <svg class="kite-anim" style="left:82vw;top:0;width:42px;height:42px;animation-delay:5.2s;">
-    <polygon points="21,0 42,21 21,42 0,21" fill="#ffed5c" stroke="#fff" stroke-width="3"/>
-    <line x1="21" y1="42" x2="21" y2="54" stroke="#36bf74" stroke-width="4"/>
-  </svg>
   <div class="container">
-    <h1 id="title">Vishwakarma Puja Wishes ✨</h1>
+    <h1>Vishwakarma Puja Wishes ✨</h1>
     <button id="getWishBtn">Get Your Puja Wish</button>
     <div id="wishResult"></div>
   </div>
@@ -184,55 +127,39 @@
   </div>
   <footer>Made by PRATIK</footer>
   <script>
-    // Wishes
-    const wishes = [
+    var wishes = [
       "wishing you a blessed and prosperous Vishwakarma Puja! May your creativity and craftsmanship bring you success and happiness.",
       "may Lord Vishwakarma bless your hands with skill and your heart with peace this Puja.",
       "sending you prayers for brilliance and success on this divine Vishwakarma Puja day.",
       "may your hard work and talent shine bright with Vishwakarma's blessings.",
       "hope your Vishwakarma Puja is filled with joy, inspiration, and beautiful creations ahead."
     ];
-    const getWishBtn = document.getElementById('getWishBtn');
-    const wishResult = document.getElementById('wishResult');
-    const modalBack = document.getElementById('modalBack');
-    const modalNameInput = document.getElementById('modalNameInput');
-    const modalSubmitBtn = document.getElementById('modalSubmitBtn');
-    const audio = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
-    // Allow any non-blank name
-    function validateName(name) {
-      return name.trim().length > 0;
-    }
-    // Button click: ask for name
-    getWishBtn.addEventListener('click', () => {
+    var getWishBtn = document.getElementById('getWishBtn');
+    var wishResult = document.getElementById('wishResult');
+    var modalBack = document.getElementById('modalBack');
+    var modalNameInput = document.getElementById('modalNameInput');
+    var modalSubmitBtn = document.getElementById('modalSubmitBtn');
+    getWishBtn.onclick = function(){
       modalBack.style.display = "flex";
       modalNameInput.value = "";
       modalSubmitBtn.disabled = true;
       wishResult.textContent = "";
-    });
-    modalNameInput.addEventListener('input', () => {
-      modalSubmitBtn.disabled = !validateName(modalNameInput.value);
-    });
-    modalSubmitBtn.addEventListener('click', () => {
+      setTimeout(function(){modalNameInput.focus();},150);
+    }
+    modalNameInput.oninput = function() {
+      modalSubmitBtn.disabled = (modalNameInput.value.trim().length < 1);
+    }
+    modalSubmitBtn.onclick = function() {
       modalBack.style.display = "none";
-      const name = modalNameInput.value.trim();
-      const wishText = wishes[Math.floor(Math.random() * wishes.length)];
-      const colors = ['#FF6347','#FFD700','#00FA9A','#1E90FF','#FF69B4','#FF8C00','#00CED1','#ff7c2a','#ff32a7'];
-      let sum = 0; for(let ch of name) sum += ch.charCodeAt(0);
-      wishResult.textContent = Dear ${name}, ${wishText};
+      var name = modalNameInput.value.trim();
+      var wishText = wishes[Math.floor(Math.random() * wishes.length)];
+      var colors = ['#FF6347','#FFD700','#00FA9A','#1E90FF','#FF69B4','#FF8C00','#00CED1','#ff7c2a','#ff32a7'];
+      var sum = 0;
+      for(var i=0;i<name.length;i++){ sum += name.charCodeAt(i);}
+      wishResult.textContent = "Dear " + name + ", " + wishText;
       wishResult.style.color = colors[sum % colors.length];
-      audio.currentTime = 0; audio.play();
-      // Confetti
-      for(let i = 0; i < 85; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.backgroundColor = hsl(${Math.random()*360}, 78%, 67%);
-        confetti.style.animationDuration = (1.4 + Math.random()*1.3) + 's';
-        confetti.style.width = confetti.style.height = (5 + Math.random()*7) + 'px';
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 2300);
-      }
-    });
+    }
   </script>
 </body>
 </html>
+
