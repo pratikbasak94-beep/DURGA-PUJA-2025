@@ -4,111 +4,154 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Durga Puja Wishes</title>
+  <!-- Google Fonts for Title and Wishes -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Bree+Serif&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #f44336 60%, #ffeb3b 100%);
-      overflow: hidden;
+      font-family: 'Baloo 2', Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: url('https://www.transparenttextures.com/patterns/flowers.png'),
+                  linear-gradient(135deg, #fffbe7 0%, #ffd6d6 55%, #ffeebb 100%);
+      background-repeat: repeat;
+      min-height: 100vh;
     }
     .bg-text {
-      position: fixed;
-      top: 25%;
-      left: 50%;
+      position: fixed; top: 25%; left: 50%;
       transform: translate(-50%,-50%);
-      font-family: 'Georgia', serif;
-      font-size: 5vw;
+      font-family: 'Bree Serif', serif;
+      font-size: 8vw;
       font-weight: bold;
-      color: rgba(255,255,255,0.18);
-      text-shadow: 3px 3px 8px rgba(0,0,0,0.10);
+      color: rgba(210,25,25,0.08);
       pointer-events: none;
-      z-index: 0;
-      white-space: nowrap;
+      z-index: 0; white-space: nowrap;
+      user-select: none;
+      letter-spacing: 2px;
     }
     header {
-      background-color: rgba(255,77,77,0.8);
-      color: white;
-      padding: 1em;
+      font-family: 'Bree Serif', serif;
+      background: linear-gradient(90deg, #d62411 70%, #ebba5d 100%);
+      color: #fff;
+      font-size: 2.1em;
       text-align: center;
-      font-size: 1.5em;
-      z-index: 1;
-      position: relative;
+      padding: 1.1em 0em 1em 0em;
+      border-radius: 0 0 24px 24px;
+      animation: bannerWave 2.6s infinite alternate ease-in-out;
+      letter-spacing: 2.3px;
+      box-shadow: 0px 5px 16px -5px rgba(230, 50, 90, 0.13);
+      z-index: 1; position: relative;
+    }
+    @keyframes bannerWave {
+      0% { letter-spacing: 2.5px; }
+      50% { letter-spacing: 9px; }
+      100% { letter-spacing: 2.5px; }
     }
     nav {
-      background: rgba(255,230,230,0.8);
-      padding: 0.5em;
+      background: rgba(255,230,230,0.78);
+      padding: 0.7em 0 0.3em 0;
       display: flex;
       justify-content: center;
-      gap: 1em;
+      gap: 0.6em;
       flex-wrap: wrap;
-      z-index: 1;
-      position: relative;
+      z-index: 1; position: relative;
     }
     nav button {
-      background-color: #ff6666;
+      background: linear-gradient(100deg, #ff9900, #fa514c 85%);
       border: none;
-      color: white;
-      padding: 12px 24px;
+      color: #fff;
+      padding: 13px 12px 14px 18px;
       cursor: pointer;
+      font-family: 'Baloo 2', Arial, sans-serif;
+      font-size: 1.12em;
+      border-radius: 23px;
       font-weight: bold;
-      border-radius: 5px;
-      margin-bottom: 8px;
-      font-size: 1.08em;
-      transition: background 0.2s;
+      margin-bottom: 5px;
+      min-width: 147px;
+      max-width: 96vw;
+      box-shadow: 0 5px 14px -6px #ebba5db6;
+      display: flex; align-items: center; gap: 8px;
+      transition: transform 0.18s, box-shadow 0.22s, background 0.21s;
+      outline: none;
+    }
+    nav button:enabled:hover, nav button:enabled:focus {
+      background: #fffbe7;
+      color: #ba181b;
+      transform: scale(1.07);
+      box-shadow: 0 0 16px 7px #ffecb3a0;
     }
     nav button:disabled {
       background-color: #ffcccc;
+      color: #aaa;
+      opacity: 0.6;
       cursor: not-allowed;
-      color: #555;
+      box-shadow: none;
+      border: none;
+    }
+    .emoji {
+      font-size: 1.35em;
+      margin-right: 3px;
+      filter: drop-shadow(0 1.5px 0 #fffad1);
+      user-select: none;
     }
     main {
-      padding: 2em;
+      padding: 2em 1.1em 2.2em 1.1em;
       text-align: center;
-      background-color: rgba(255,255,255,0.6);
-      border-radius: 10px;
-      max-width: 600px;
-      margin: 2em auto;
+      background-color: rgba(255,255,255,0.69);
+      border-radius: 16px;
+      max-width: 630px;
+      margin: 2em auto 1em auto;
       z-index: 1;
       position: relative;
+      box-shadow: 0 5px 30px -8px #e3953b26;
     }
     .day-content {
       display: none;
+      opacity: 0;
+      transition: opacity 0.55s;
+    }
+    .day-content.active {
+      display: block;
+      opacity: 1;
+      animation: fadeIn 0.7s;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    #welcome {
+      font-size: 1.2em;
+      margin-bottom: 1.2em;
     }
     footer {
-      background-color: rgba(255,77,77,0.8);
-      color: rgb(255,215,0);
+      background: linear-gradient(90deg, #ba181b 60%, #fecd3a 100%);
+      color: #fff;
       text-align: center;
       padding: 1em;
       font-weight: bold;
       position: fixed;
-      bottom: 0;
-      width: 100%;
-      z-index: 1;
+      bottom: 0; width: 100%; z-index: 88;
+      box-shadow: 0px -3px 12px -2px #d64b6d2a;
     }
-    /* MOBILE FRIENDLY */
+    /* MOBILE RESPONSIVE */
     @media (max-width: 700px) {
       nav {
         flex-direction: column;
         align-items: center;
-        gap: 0.5em;
+        gap: 0.35em;
       }
       nav button {
-        width: 90vw;
-        max-width: 350px;
-        font-size: 1.07em;
-        margin-bottom: 12px;
+        width: 94vw;
+        max-width: 409px;
+        font-size: 1em;
       }
       main {
-        padding: 1em;
-        max-width: 96vw;
+        padding: 1em 2vw 1.9em 2vw;
+        max-width: 99vw; min-width: unset;
         border-radius: 0;
-        margin: 1em auto;
-        font-size: 1.08em;
+        font-size: 1.09em;
       }
       .bg-text {
-        font-size: 11vw;
+        font-size: 13vw;
+        top: 22%;
       }
     }
   </style>
@@ -117,46 +160,57 @@
   <div class="bg-text">Durga Puja</div>
   <header>Durga Puja Wishes</header>
   <nav>
-    <button id="btn-mahalaya">Mahalaya</button>
-    <button id="btn-panchami">Panchami</button>
-    <button id="btn-shashthi">Shashthi</button>
-    <button id="btn-saptami">Saptami</button>
-    <button id="btn-ashtami">Ashtami</button>
-    <button id="btn-navami">Navami</button>
-    <button id="btn-dashami">Dashami</button>
+    <button id="btn-mahalaya"><span class="emoji">🪔</span> Mahalaya</button>
+    <button id="btn-panchami"><span class="emoji">🔔</span> Panchami</button>
+    <button id="btn-shashthi"><span class="emoji">🥁</span> Shashthi</button>
+    <button id="btn-saptami"><span class="emoji">🌅</span> Saptami</button>
+    <button id="btn-ashtami"><span class="emoji">🌸</span> Ashtami</button>
+    <button id="btn-navami"><span class="emoji">🎉</span> Navami</button>
+    <button id="btn-dashami"><span class="emoji">🕊</span> Dashami</button>
   </nav>
   <main>
     <div id="welcome"></div>
     <div id="mahalaya" class="day-content">
       <h2>Happy Mahalaya!</h2>
-      <p>May the divine blessings of Maa Durga be with you today and always, <span id="name-mahalaya"></span>!</p>
+      <p>May the divine blessings of Maa Durga be with you today and always,
+        <span id="name-mahalaya"></span>!</p>
     </div>
     <div id="panchami" class="day-content">
       <h2>Happy Panchami!</h2>
-      <p>May Maa Durga's grace fill your life this Panchami day, <span id="name-panchami"></span>!</p>
+      <p>May Maa Durga's grace fill your life this Panchami day,
+        <span id="name-panchami"></span>!</p>
     </div>
     <div id="shashthi" class="day-content">
       <h2>Happy Shashthi!</h2>
-      <p>Wishing you strength and happiness on this auspicious day, <span id="name-shashthi"></span>!</p>
+      <p>Wishing you strength and happiness on this auspicious day,
+        <span id="name-shashthi"></span>!</p>
     </div>
     <div id="saptami" class="day-content">
       <h2>Happy Saptami!</h2>
-      <p>May Maa Durga bless you with prosperity and joy, <span id="name-saptami"></span>!</p>
+      <p>May Maa Durga bless you with prosperity and joy,
+        <span id="name-saptami"></span>!</p>
     </div>
     <div id="ashtami" class="day-content">
       <h2>Happy Ashtami!</h2>
-      <p>Celebrate the victory of good over evil with love and devotion, <span id="name-ashtami"></span>!</p>
+      <p>Celebrate the victory of good over evil with love and devotion,
+        <span id="name-ashtami"></span>!</p>
     </div>
     <div id="navami" class="day-content">
       <h2>Happy Navami!</h2>
-      <p>May your life be filled with divine blessings and peace, <span id="name-navami"></span>!</p>
+      <p>May your life be filled with divine blessings and peace,
+        <span id="name-navami"></span>!</p>
     </div>
     <div id="dashami" class="day-content">
       <h2>Happy Dashami!</h2>
-      <p>Wishing you farewell to negativity and a fresh start, <span id="name-dashami"></span>!</p>
+      <p>Wishing you farewell to negativity and a fresh start,
+        <span id="name-dashami"></span>!</p>
     </div>
   </main>
-  <footer id="footerCredit">Made by Pratik</footer>
+  <footer>Made by Pratik</footer>
+  <!-- DHAAK MUSIC AUTOPLAY, hidden control -->
+  <audio id="puja-music" src="https://cdn.pixabay.com/audio/2023/10/11/audio_42f98f43eb.mp3" autoplay loop></audio>
+  <!-- JSConfetti via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
   <script>
     const days = {
       mahalaya: new Date(2025, 8, 21),
@@ -167,25 +221,21 @@
       navami: new Date(2025, 9, 1),
       dashami: new Date(2025, 9, 2)
     };
-
     let userName = prompt("Please enter your name for personalized Durga Puja wishes:");
     if (!userName) userName = "Guest";
-    const welcomeDiv = document.getElementById('welcome');
-    welcomeDiv.textContent = "Welcome, " + userName + "! Click any festival day for your wishes.";
+    document.getElementById('welcome').textContent =
+      "Welcome, " + userName + "! Click any festival day for your wishes.";
 
+    // Enable/disable logic
     function enableButtons() {
       const today = new Date();
       today.setHours(0,0,0,0);
-
-      // Mahalaya opens from "today" until 21 Sep inclusive
-      const mahalayaEnd = new Date(2025, 8, 21);
-      mahalayaEnd.setHours(0,0,0,0);
+      // Mahalaya: enabled from now till 21 Sep 2025
+      const mahalayaEnd = new Date(2025,8,21); mahalayaEnd.setHours(0,0,0,0);
       document.getElementById('btn-mahalaya').disabled = today > mahalayaEnd;
-
-      // Other days: only on their calendar date
+      // Others: only on their date
       Object.entries(days).forEach(([key, date]) => {
-        date = new Date(date);
-        date.setHours(0,0,0,0);
+        date = new Date(date); date.setHours(0,0,0,0);
         const btn = document.getElementById('btn-' + key);
         if (key !== 'mahalaya') {
           btn.disabled = !(today.getFullYear() === date.getFullYear()
@@ -196,21 +246,36 @@
     }
     enableButtons();
 
-    function showDay(dayId) {
-      welcomeDiv.textContent = "Happy " + capitalize(dayId) + ", " + userName + "!";
-      const dayContents = document.querySelectorAll('.day-content');
-      dayContents.forEach(dc => dc.style.display = 'none');
-      document.getElementById(dayId).style.display = 'block';
-      // Personalize each message!
-      if (document.getElementById("name-" + dayId)) {
-        document.getElementById("name-" + dayId).textContent = userName;
-      }
-    }
+    // Confetti setup
+    const jsConfetti = new JSConfetti();
 
+    function showDay(dayId) {
+      document.getElementById('welcome').textContent =
+        "Happy " + capitalize(dayId) + ", " + userName + "!";
+      document.querySelectorAll('.day-content').forEach(dc => {
+        dc.classList.remove('active');
+        dc.style.display = 'none';
+      });
+      const active = document.getElementById(dayId);
+      active.style.display = 'block';
+      setTimeout(() => active.classList.add('active'), 10);
+      // Personalize
+      if (document.getElementById("name-" + dayId))
+        document.getElementById("name-" + dayId).textContent = userName;
+      // Confetti time! Use fun party emoji and colors
+      jsConfetti.addConfetti({
+        emojis:['🪔','🥁','🎉','🌸','🔔','🕊','🌺'],
+        confettiRadius: 5,
+        confettiNumber: 70,
+        emojiSize: 42,
+        confettiColors:[
+          "#fa514c","#ff9900","#ffd600","#ba181b","#8c452b","#fdba01"
+        ]
+      });
+    }
     function capitalize(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
-
     document.getElementById('btn-mahalaya').onclick = () => showDay('mahalaya');
     document.getElementById('btn-panchami').onclick = () => showDay('panchami');
     document.getElementById('btn-shashthi').onclick = () => showDay('shashthi');
@@ -218,7 +283,13 @@
     document.getElementById('btn-ashtami').onclick = () => showDay('ashtami');
     document.getElementById('btn-navami').onclick = () => showDay('navami');
     document.getElementById('btn-dashami').onclick = () => showDay('dashami');
+    // Attempt autoplay music, some browsers may wait for a click
+    window.addEventListener('load', function() {
+      const audio = document.getElementById("puja-music");
+      if(audio) { audio.play().catch(()=>{}); }
+    });
   </script>
 </body>
 </html>
+
 
