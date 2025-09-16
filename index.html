@@ -1,367 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Vishwakrma Puja Wishes</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Work+Sans:wght@400;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vishwakarma Puja Wishes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Work+Sans:wght@400;700&display=swap');
 
-  /* Basic reset */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Work Sans', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: #223344;
-    color: #fff;
-    overflow-x: hidden;
-    transition: background 0.5s ease, color 0.5s ease;
-  }
-
-  /* Light mode */
-  body.light {
-    background: #fdf6e3;
-    color: #333;
-  }
-  
-  /* Container */
-  .container {
-    max-width: 420px;
-    margin: 3rem auto 5rem;
-    background: rgba(0,0,0,0.6);
-    border-radius: 12px;
-    padding: 2rem 2.5rem;
-    box-shadow: 0 0 30px rgba(255,255,255,0.1);
-    position: relative;
-    z-index: 10;
-    transition: background 0.5s ease, color 0.5s ease;
-  }
-  body.light .container {
-    background: rgba(255,255,255,0.9);
-    color: #222;
-    box-shadow: 0 0 30px rgba(0,0,0,0.1);
-  }
-
-  h1 {
-    font-family: 'Jomhuria', cursive;
-    font-size: 2.8rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    user-select: none;
-  }
-
-  input[type="text"] {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-    transition: box-shadow 0.3s ease;
-  }
-  input[type="text"]:focus {
-    outline: none;
-    box-shadow: 0 0 8px #1e90ff;
-  }
-
-  .feedback {
-    font-size: 0.9rem;
-    height: 20px;
-    margin-bottom: 15px;
-    user-select: none;
-  }
-  .feedback.valid {
-    color: #7fff00;
-  }
-  .feedback.invalid {
-    color: #ff6347;
-  }
-
-  button {
-    width: 100%;
-    padding: 13px 0;
-    font-size: 18px;
-    border-radius: 8px;
-    border: none;
-    background: #1e90ff;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.3s ease;
-  }
-  button:hover, button:focus {
-    background: #0b66c2;
-    outline: none;
-  }
-  button:active {
-    background: #074a84;
-  }
-
-  #wish {
-    margin-top: 25px;
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1.4;
-    min-height: 54px;
-    user-select: text;
-    text-align: center;
-    padding: 0 10px;
-  }
-
-  footer {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    color: rgb(255,0,0);
-    padding: 10px 0;
-    background: rgba(0,0,0,0.5);
-    font-family: monospace;
-    user-select: none;
-    z-index: 20;
-  }
-  body.light footer {
-    background: rgba(255, 255, 255, 0.7);
-    color: rgb(255,0,0);
-  }
-
-  /* Dark/light toggle container */
-  .toggle-container {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    user-select: none;
-  }
-  .toggle-label {
-    cursor: pointer;
-    font-weight: 600;
-  }
-  .toggle-checkbox {
-    margin-left: 10px;
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-    cursor: pointer;
-  }
-
-  /* Share button */
-  #shareBtn {
-    margin-top: 15px;
-    background: #28a745;
-  }
-  #shareBtn:hover {
-    background: #1e7e34;
-  }
-
-  /* Confetti styling */
-  .confetti {
-    position: fixed;
-    width: 10px; 
-    height: 10px;
-    background-color: #fce18a;
-    opacity: 0.9;
-    z-index: 30;
-    pointer-events: none;
-    border-radius: 50%;
-    animation: fall 3s linear forwards;
-  }
-  @keyframes fall {
-    to {
-      transform: translateY(100vh) rotate(360deg);
-      opacity: 0;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Work Sans', sans-serif;
+      min-height: 100vh;
+      background: #faf2e8;
+      color: #222;
+      position: relative;
+      overflow-x: hidden;
+      transition: background 0.5s, color 0.5s;
     }
-  }
+    .kite-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      background: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80') center center no-repeat;
+      background-size: cover;
+      filter: brightness(1.05);
+      animation: kiteMove 24s linear infinite;
+    }
+    @keyframes kiteMove {
+      0% { background-position: center 0; }
+      50% { background-position: center 40px; }
+      100% { background-position: center 0; }
+    }
+    .kite-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
+      background: rgba(255,255,255,0.09);
+      pointer-events: none;
+    }
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 420px;
+      margin: 3rem auto 5rem auto;
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      padding: 2.5rem 1.7rem 2rem 1.7rem;
+      box-shadow: 0 6px 29px rgba(72,72,72,0.12);
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Jomhuria', cursive;
+      font-size: 2.45rem;
+      margin-bottom: 1rem;
+      color: #10327c;
+      letter-spacing: 1px;
+      user-select: none;
+    }
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      color: #10327c;
+      font-weight: 600;
+    }
+    .toggle-checkbox {
+      margin-left: 8px;
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 13px 16px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: 1.5px solid #e1e1e1;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 2px 10px rgba(180,195,255,0.08);
+      transition: box-shadow .2s, border .2s;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border: 1.5px solid #1e90ff;
+      box-shadow: 0 0 8px #1e90ff33;
+    }
+    .feedback {
+      font-size: 0.95rem;
+      height: 22px;
+      margin-bottom: 12px;
+    }
+    .feedback.valid { color: #21ce34; }
+    .feedback.invalid { color: #f34336; }
 
-  /* Kite animation background */
-  .kite-bg {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Indian_kites_sky_-_Tiruvannamalai_-_Tamil_Nadu_-_India_-_2015-03-21_01-10-52.jpg/1280px-Indian_kites_sky_-_Tiruvannamalai_-_Tamil_Nadu_-_India_-_2015-03-21_01-10-52.jpg') center center no-repeat;
-    background-size: cover;
-    z-index: 0;
-    filter: brightness(0.6);
-    animation: kiteMove 30s linear infinite;
-  }
-  @keyframes kiteMove {
-    0% { background-position: center 0; }
-    50% { background-position: center 15px; }
-    100% { background-position: center 0; }
-  }
+    button {
+      width: 100%;
+      padding: 14px 0;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      background: #1e90ff;
+      color: white;
+      font-weight: bold;
+      margin-top: 10px;
+      cursor: pointer;
+      box-shadow: 0 1px 7px rgba(45,75,180,0.13);
+      transition: background .28s;
+    }
+    button:disabled {
+      opacity: 0.63;
+      background: #5a7aae;
+      cursor: not-allowed;
+    }
+    button:hover, button:focus {
+      background: #0b66c2;
+    }
+    button:active {
+      background: #0e448f;
+    }
+    #shareBtn {
+      background: #28a745;
+      margin-top: 14px;
+    }
+    #shareBtn:hover {
+      background: #199c31;
+    }
 
-</style>
+    #wish {
+      margin-top: 22px;
+      font-size: 21px;
+      font-weight: 700;
+      min-height: 54px;
+      user-select: text;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px; height: 10px;
+      opacity: 0.93;
+      z-index: 99;
+      pointer-events: none;
+      border-radius: 50%;
+      animation: fall 2.3s linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(370deg); opacity: 0;}
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      text-align: center;
+      font-weight: bold;
+      font-size: 19px;
+      color: rgb(255,0,0);
+      padding: 10px 0 6px 0;
+      background: rgba(0,0,0,0.39);
+      font-family: monospace;
+      user-select: none;
+      letter-spacing: 1px;
+      z-index: 100;
+    }
+
+    /* Dark mode tweaks */
+    body.dark {
+      background: #222b43;
+      color: #f7f7f7;
+    }
+    body.dark .container {
+      background: rgba(35,43,77,0.91);
+      color: #fff;
+      box-shadow: 0 8px 28px rgba(11,27,66,0.2);
+    }
+    body.dark h1 { color: #ffe863; }
+    body.dark .toggle-container { color: #ffe863; }
+    body.dark input[type="text"] {
+      background: #161a23;
+      border: 1.5px solid #415097;
+      color: #fff;
+    }
+    body.dark button { background: #3e69e6; }
+    body.dark button#shareBtn { background: #36bf74; }
+    body.dark footer {background:rgba(30,30,30,0.8);}
+    @media (max-width:580px){
+      .container{margin:1.4rem 5vw 4rem 5vw;padding:1.4rem 6vw 1.3rem 6vw;}
+      #wish{font-size:18px;}
+      h1{font-size:1.65rem;}
+    }
+  </style>
 </head>
 <body>
-
-  <div class="kite-bg" aria-hidden="true"></div>
-
+  <div class="kite-bg"></div>
+  <div class="kite-overlay"></div>
   <div class="container" role="main" aria-labelledby="title">
-    <h1 id="title">Vishwakrma Puja Wishes ✨</h1>
-
+    <h1 id="title">Vishwakarma Puja Wishes ✨</h1>
     <div class="toggle-container">
-      <label for="modeToggle" class="toggle-label" id="modeLabel" aria-live="polite">Toggle Dark / Light Mode</label>
-      <input type="checkbox" id="modeToggle" class="toggle-checkbox" aria-checked="false" aria-labelledby="modeLabel" />
+      <span>Toggle Dark / Light Mode</span>
+      <input type="checkbox" id="modeToggle" class="toggle-checkbox" />
     </div>
-
     <input type="text" id="nameInput" aria-describedby="feedback" placeholder="Enter your friend's name" autocomplete="off" />
     <div id="feedback" class="feedback" aria-live="polite"></div>
-
-    <button id="viewWishBtn" aria-describedby="wish" type="button" disabled>View Wish</button>
-    <button id="shareBtn" type="button" aria-label="Share the Vishwakrma Puja wish" style="display:none;">Share Wish</button>
-
-    <div id="wish" aria-live="polite" aria-atomic="true" aria-relevant="additions"></div>
+    <button id="viewWishBtn" type="button" disabled>View Wish</button>
+    <button id="shareBtn" type="button" style="display:none;">Share Wish</button>
+    <div id="wish" aria-live="polite"></div>
   </div>
-
-  <footer role="contentinfo" aria-label="Footer with author name">Made by PRATIK</footer>
-
-<script>
-  // Wishes array - multiple wishes for variety
-  const wishes = [
-    "wishing you a blessed and prosperous Vishwakrma Puja! May your creativity and craftsmanship bring you success and happiness.",
-    "may Lord Vishwakrma bless your hands with skill and your heart with peace this Puja.",
-    "sending you prayers for brilliance and success on this divine Vishwakrma Puja day.",
-    "may your hard work and talent shine bright with Vishwakrma's blessings.",
-    "hope your Vishwakrma Puja is filled with joy, inspiration, and beautiful creations ahead."
-  ];
-
-  const nameInput = document.getElementById('nameInput');
-  const feedback = document.getElementById('feedback');
-  const viewWishBtn = document.getElementById('viewWishBtn');
-  const shareBtn = document.getElementById('shareBtn');
-  const wishDiv = document.getElementById('wish');
-  const modeToggle = document.getElementById('modeToggle');
-  const body = document.body;
-
-  // Sound effect setup
-  const audio = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg'); // playful chime sound
-
-  // Name validation: only letters, spaces allowed, minimum 1 character
-  function validateName(name) {
-    return /^[A-Za-z\s]{1,40}$/.test(name);
-  }
-
-  // Update validation feedback and button state real-time
-  nameInput.addEventListener('input', () => {
-    const val = nameInput.value.trim();
-    if (val.length === 0) {
-      feedback.textContent = '';
-      feedback.className = 'feedback';
-      viewWishBtn.disabled = true;
-    } else if (validateName(val)) {
-      feedback.textContent = 'Looks good!';
-      feedback.className = 'feedback valid';
-      viewWishBtn.disabled = false;
-    } else {
-      feedback.textContent = 'Please enter only letters and spaces.';
-      feedback.className = 'feedback invalid';
-      viewWishBtn.disabled = true;
+  <footer>Made by PRATIK</footer>
+  <script>
+    // Festive wish templates
+    const wishes = [
+      "wishing you a blessed and prosperous Vishwakarma Puja! May your creativity and craftsmanship bring you success and happiness.",
+      "may Lord Vishwakarma bless your hands with skill and your heart with peace this Puja.",
+      "sending you prayers for brilliance and success on this divine Vishwakarma Puja day.",
+      "may your hard work and talent shine bright with Vishwakarma's blessings.",
+      "hope your Vishwakarma Puja is filled with joy, inspiration, and beautiful creations ahead."
+    ];
+    const nameInput = document.getElementById('nameInput');
+    const feedback = document.getElementById('feedback');
+    const viewWishBtn = document.getElementById('viewWishBtn');
+    const shareBtn = document.getElementById('shareBtn');
+    const wishDiv = document.getElementById('wish');
+    const modeToggle = document.getElementById('modeToggle');
+    const body = document.body;
+    const audio = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
+    function validateName(name) {
+      return /^[A-Za-z\s]{1,40}$/.test(name);
     }
-    // Reset wish and share button if changing input
-    wishDiv.textContent = '';
-    shareBtn.style.display = 'none';
-  });
-
-  // Generate random integer helper
-  function randomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
-
-  // Personalized style based on name
-  function styleWish(name) {
-    const colors = ['#FF6347','#FFD700','#00FA9A','#1E90FF','#FF69B4','#FF8C00','#00CED1'];
-    // Color by sum char code mod colors length
-    let sum = 0;
-    for(let ch of name){ sum += ch.charCodeAt(0); }
-    return colors[sum % colors.length];
-  }
-
-  // Confetti effect function
-  function createConfetti() {
-    const confettiCount = 120;
-    for(let i = 0; i < confettiCount; i++) {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.backgroundColor = hsl(${Math.random()*360}, 70%, 70%);
-      confetti.style.animationDuration = (2 + Math.random()*2) + 's';
-      confetti.style.width = confetti.style.height = (5 + Math.random()*7) + 'px';
-      document.body.appendChild(confetti);
-
-      setTimeout(() => {
-        confetti.remove();
-      }, 4000);
-    }
-  }
-
-  // Show wish function
-  viewWishBtn.addEventListener('click', () => {
-    const name = nameInput.value.trim();
-    if (!validateName(name)) {
-      wishDiv.textContent = "Invalid name entered.";
+    nameInput.addEventListener('input', () => {
+      const val = nameInput.value.trim();
+      if (val.length === 0) {
+        feedback.textContent = '';
+        feedback.className = 'feedback';
+        viewWishBtn.disabled = true;
+      } else if (validateName(val)) {
+        feedback.textContent = 'Looks good!';
+        feedback.className = 'feedback valid';
+        viewWishBtn.disabled = false;
+      } else {
+        feedback.textContent = 'Please enter only letters and spaces.';
+        feedback.className = 'feedback invalid';
+        viewWishBtn.disabled = true;
+      }
+      wishDiv.textContent = '';
       shareBtn.style.display = 'none';
-      return;
+    });
+    function randomInt(max) {
+      return Math.floor(Math.random() * max);
     }
-    // Pick a random wish
-    const wishText = wishes[randomInt(wishes.length)];
-    const styledColor = styleWish(name);
-
-    wishDiv.textContent = Dear ${name}, ${wishText};
-    wishDiv.style.color = styledColor;
-
-    // Play sound
-    audio.currentTime = 0;
-    audio.play();
-
-    // Show confetti
-    createConfetti();
-
-    // Show share button
-    shareBtn.style.display = 'block';
-    shareBtn.textContent = 'Share Wish';
-  });
-
-  // Share functionality (copies text to clipboard or uses Web Share)
-  shareBtn.addEventListener('click', async () => {
-    const text = wishDiv.textContent || '';
-    if (!text) return;
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Vishwakrma Puja Wish',
-          text: text
-        });
-      } catch (err) {
-        alert('Sharing canceled or failed.');
+    function styleWish(name) {
+      const colors = ['#FF6347','#FFD700','#00FA9A','#1E90FF','#FF69B4','#FF8C00','#00CED1','#ff7c2a','#ff32a7'];
+      let sum = 0;
+      for(let ch of name) sum += ch.charCodeAt(0);
+      return colors[sum % colors.length];
+    }
+    function createConfetti() {
+      const confettiCount = 85;
+      for(let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = hsl(${Math.random()*360}, 78%, 67%);
+        confetti.style.animationDuration = (1.4 + Math.random()*1.3) + 's';
+        confetti.style.width = confetti.style.height = (5 + Math.random()*7) + 'px';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 2300);
       }
-    } else if (navigator.clipboard) {
-      try {
-        await navigator.clipboard.writeText(text);
-        alert('Wish text copied to clipboard!');
-      } catch (err) {
-        alert('Failed to copy text.');
+    }
+    viewWishBtn.addEventListener('click', () => {
+      const name = nameInput.value.trim();
+      if (!validateName(name)) {
+        wishDiv.textContent = "Invalid name entered.";
+        shareBtn.style.display = 'none';
+        return;
       }
-    } else {
-      alert('Sharing not supported on this device.');
-    }
-  });
-
-  // Dark/light mode toggle
-  modeToggle.addEventListener('change', () => {
-    if (modeToggle.checked) {
-      body.classList.add('light');
-      modeToggle.setAttribute('aria-checked', 'true');
-    } else {
-      body.classList.remove('light');
-      modeToggle.setAttribute('aria-checked', 'false');
-    }
-  });
-
-</script>
+      const wishText = wishes[randomInt(wishes.length)];
+      const styledColor = styleWish(name);
+      wishDiv.textContent = Dear ${name}, ${wishText};
+      wishDiv.style.color = styledColor;
+      audio.currentTime = 0; audio.play();
+      createConfetti();
+      shareBtn.style.display = 'block';
+      shareBtn.textContent = 'Share Wish';
+    });
+    shareBtn.addEventListener('click', async () => {
+      const text = wishDiv.textContent || '';
+      if (!text) return;
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: 'Vishwakarma Puja Wish', text });
+        } catch {
+          alert('Sharing canceled or failed.');
+        }
+      } else if (navigator.clipboard) {
+        try {
+          await navigator.clipboard.writeText(text);
+          alert('Wish text copied to clipboard!');
+        } catch {
+          alert('Failed to copy text.');
+        }
+      } else {
+        alert('Sharing not supported on this device.');
+      }
+    });
+    modeToggle.addEventListener('change', () => {
+      if (modeToggle.checked) {
+        body.classList.add('dark');
+      } else {
+        body.classList.remove('dark');
+      }
+    });
+  </script>
 </body>
 </html>
 
