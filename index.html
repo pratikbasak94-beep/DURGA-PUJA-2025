@@ -1,294 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Durga Puja Wishes</title>
-  <!-- Google Fonts for Title and Wishes -->
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Bree+Serif&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Baloo 2', Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: url('https://www.transparenttextures.com/patterns/flowers.png'),
-                  linear-gradient(135deg, #fffbe7 0%, #ffd6d6 55%, #ffeebb 100%);
-      background-repeat: repeat;
-      min-height: 100vh;
-    }
-    .bg-text {
-      position: fixed; top: 25%; left: 50%;
-      transform: translate(-50%,-50%);
-      font-family: 'Bree Serif', serif;
-      font-size: 8vw;
-      font-weight: bold;
-      color: rgba(210,25,25,0.08);
-      pointer-events: none;
-      z-index: 0; white-space: nowrap;
-      user-select: none;
-      letter-spacing: 2px;
-    }
-    header {
-      font-family: 'Bree Serif', serif;
-      background: linear-gradient(90deg, #d62411 70%, #ebba5d 100%);
-      color: #fff;
-      font-size: 2.1em;
-      text-align: center;
-      padding: 1.1em 0em 1em 0em;
-      border-radius: 0 0 24px 24px;
-      animation: bannerWave 2.6s infinite alternate ease-in-out;
-      letter-spacing: 2.3px;
-      box-shadow: 0px 5px 16px -5px rgba(230, 50, 90, 0.13);
-      z-index: 1; position: relative;
-    }
-    @keyframes bannerWave {
-      0% { letter-spacing: 2.5px; }
-      50% { letter-spacing: 9px; }
-      100% { letter-spacing: 2.5px; }
-    }
-    nav {
-      background: rgba(255,230,230,0.78);
-      padding: 0.7em 0 0.3em 0;
-      display: flex;
-      justify-content: center;
-      gap: 0.6em;
-      flex-wrap: wrap;
-      z-index: 1; position: relative;
-    }
-    nav button {
-      background: linear-gradient(100deg, #ff9900, #fa514c 85%);
-      border: none;
-      color: #fff;
-      padding: 13px 12px 14px 18px;
-      cursor: pointer;
-      font-family: 'Baloo 2', Arial, sans-serif;
-      font-size: 1.12em;
-      border-radius: 23px;
-      font-weight: bold;
-      margin-bottom: 5px;
-      min-width: 147px;
-      max-width: 96vw;
-      box-shadow: 0 5px 14px -6px #ebba5db6;
-      display: flex; align-items: center; gap: 8px;
-      transition: transform 0.18s, box-shadow 0.22s, background 0.21s;
-      outline: none;
-    }
-    nav button:enabled:hover, nav button:enabled:focus {
-      background: #fffbe7;
-      color: #ba181b;
-      transform: scale(1.07);
-      box-shadow: 0 0 16px 7px #ffecb3a0;
-    }
-    nav button:disabled {
-      background-color: #ffcccc;
-      color: #aaa;
-      opacity: 0.6;
-      cursor: not-allowed;
-      box-shadow: none;
-      border: none;
-    }
-    .emoji {
-      font-size: 1.35em;
-      margin-right: 3px;
-      filter: drop-shadow(0 1.5px 0 #fffad1);
-      user-select: none;
-    }
-    main {
-      padding: 2em 1.1em 2.2em 1.1em;
-      text-align: center;
-      background-color: rgba(255,255,255,0.69);
-      border-radius: 16px;
-      max-width: 630px;
-      margin: 2em auto 1em auto;
-      z-index: 1;
-      position: relative;
-      box-shadow: 0 5px 30px -8px #e3953b26;
-    }
-    .day-content {
-      display: none;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vishwakrma Puja Wishes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Work+Sans:wght@400;700&display=swap');
+
+  /* Basic reset */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #223344;
+    color: #fff;
+    overflow-x: hidden;
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+
+  /* Light mode */
+  body.light {
+    background: #fdf6e3;
+    color: #333;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 420px;
+    margin: 3rem auto 5rem;
+    background: rgba(0,0,0,0.6);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 10;
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+  body.light .container {
+    background: rgba(255,255,255,0.9);
+    color: #222;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+  }
+
+  h1 {
+    font-family: 'Jomhuria', cursive;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    user-select: none;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: box-shadow 0.3s ease;
+  }
+  input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 8px #1e90ff;
+  }
+
+  .feedback {
+    font-size: 0.9rem;
+    height: 20px;
+    margin-bottom: 15px;
+    user-select: none;
+  }
+  .feedback.valid {
+    color: #7fff00;
+  }
+  .feedback.invalid {
+    color: #ff6347;
+  }
+
+  button {
+    width: 100%;
+    padding: 13px 0;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    background: #1e90ff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s ease;
+  }
+  button:hover, button:focus {
+    background: #0b66c2;
+    outline: none;
+  }
+  button:active {
+    background: #074a84;
+  }
+
+  #wish {
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+    min-height: 54px;
+    user-select: text;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(255,0,0);
+    padding: 10px 0;
+    background: rgba(0,0,0,0.5);
+    font-family: monospace;
+    user-select: none;
+    z-index: 20;
+  }
+  body.light footer {
+    background: rgba(255, 255, 255, 0.7);
+    color: rgb(255,0,0);
+  }
+
+  /* Dark/light toggle container */
+  .toggle-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    user-select: none;
+  }
+  .toggle-label {
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .toggle-checkbox {
+    margin-left: 10px;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  /* Share button */
+  #shareBtn {
+    margin-top: 15px;
+    background: #28a745;
+  }
+  #shareBtn:hover {
+    background: #1e7e34;
+  }
+
+  /* Confetti styling */
+  .confetti {
+    position: fixed;
+    width: 10px; 
+    height: 10px;
+    background-color: #fce18a;
+    opacity: 0.9;
+    z-index: 30;
+    pointer-events: none;
+    border-radius: 50%;
+    animation: fall 3s linear forwards;
+  }
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
       opacity: 0;
-      transition: opacity 0.55s;
     }
-    .day-content.active {
-      display: block;
-      opacity: 1;
-      animation: fadeIn 0.7s;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-    #welcome {
-      font-size: 1.2em;
-      margin-bottom: 1.2em;
-    }
-    footer {
-      background: linear-gradient(90deg, #ba181b 60%, #fecd3a 100%);
-      color: #fff;
-      text-align: center;
-      padding: 1em;
-      font-weight: bold;
-      position: fixed;
-      bottom: 0; width: 100%; z-index: 88;
-      box-shadow: 0px -3px 12px -2px #d64b6d2a;
-    }
-    /* MOBILE RESPONSIVE */
-    @media (max-width: 700px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.35em;
-      }
-      nav button {
-        width: 94vw;
-        max-width: 409px;
-        font-size: 1em;
-      }
-      main {
-        padding: 1em 2vw 1.9em 2vw;
-        max-width: 99vw; min-width: unset;
-        border-radius: 0;
-        font-size: 1.09em;
-      }
-      .bg-text {
-        font-size: 13vw;
-        top: 22%;
-      }
-    }
-  </style>
+  }
+
+  /* Kite animation background */
+  .kite-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Indian_kites_sky_-_Tiruvannamalai_-_Tamil_Nadu_-_India_-_2015-03-21_01-10-52.jpg/1280px-Indian_kites_sky_-_Tiruvannamalai_-_Tamil_Nadu_-_India_-_2015-03-21_01-10-52.jpg') center center no-repeat;
+    background-size: cover;
+    z-index: 0;
+    filter: brightness(0.6);
+    animation: kiteMove 30s linear infinite;
+  }
+  @keyframes kiteMove {
+    0% { background-position: center 0; }
+    50% { background-position: center 15px; }
+    100% { background-position: center 0; }
+  }
+
+</style>
 </head>
 <body>
-  <div class="bg-text">Durga Puja</div>
-  <header>Durga Puja Wishes</header>
-  <nav>
-    <button id="btn-mahalaya"><span class="emoji">🪔</span> Mahalaya</button>
-    <button id="btn-panchami"><span class="emoji">🔔</span> Panchami</button>
-    <button id="btn-shashthi"><span class="emoji">🥁</span> Shashthi</button>
-    <button id="btn-saptami"><span class="emoji">🌅</span> Saptami</button>
-    <button id="btn-ashtami"><span class="emoji">🌸</span> Ashtami</button>
-    <button id="btn-navami"><span class="emoji">🎉</span> Navami</button>
-    <button id="btn-dashami"><span class="emoji">🕊</span> Dashami</button>
-  </nav>
-  <main>
-    <div id="welcome"></div>
-    <div id="mahalaya" class="day-content">
-      <h2>Happy Mahalaya!</h2>
-      <p>May the divine blessings of Maa Durga be with you today and always,
-        <span id="name-mahalaya"></span>!</p>
-    </div>
-    <div id="panchami" class="day-content">
-      <h2>Happy Panchami!</h2>
-      <p>May Maa Durga's grace fill your life this Panchami day,
-        <span id="name-panchami"></span>!</p>
-    </div>
-    <div id="shashthi" class="day-content">
-      <h2>Happy Shashthi!</h2>
-      <p>Wishing you strength and happiness on this auspicious day,
-        <span id="name-shashthi"></span>!</p>
-    </div>
-    <div id="saptami" class="day-content">
-      <h2>Happy Saptami!</h2>
-      <p>May Maa Durga bless you with prosperity and joy,
-        <span id="name-saptami"></span>!</p>
-    </div>
-    <div id="ashtami" class="day-content">
-      <h2>Happy Ashtami!</h2>
-      <p>Celebrate the victory of good over evil with love and devotion,
-        <span id="name-ashtami"></span>!</p>
-    </div>
-    <div id="navami" class="day-content">
-      <h2>Happy Navami!</h2>
-      <p>May your life be filled with divine blessings and peace,
-        <span id="name-navami"></span>!</p>
-    </div>
-    <div id="dashami" class="day-content">
-      <h2>Happy Dashami!</h2>
-      <p>Wishing you farewell to negativity and a fresh start,
-        <span id="name-dashami"></span>!</p>
-    </div>
-  </main>
-  <footer>Made by Pratik</footer>
-  <!-- DHAAK MUSIC AUTOPLAY, hidden control -->
-  <audio id="puja-music" src="https://cdn.pixabay.com/audio/2023/10/11/audio_42f98f43eb.mp3" autoplay loop></audio>
-  <!-- JSConfetti via CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-  <script>
-    const days = {
-      mahalaya: new Date(2025, 8, 21),
-      panchami: new Date(2025, 8, 27),
-      shashthi: new Date(2025, 8, 28),
-      saptami: new Date(2025, 8, 29),
-      ashtami: new Date(2025, 8, 30),
-      navami: new Date(2025, 9, 1),
-      dashami: new Date(2025, 9, 2)
-    };
-    let userName = prompt("Please enter your name for personalized Durga Puja wishes:");
-    if (!userName) userName = "Guest";
-    document.getElementById('welcome').textContent =
-      "Welcome, " + userName + "! Click any festival day for your wishes.";
 
-    // Enable/disable logic
-    function enableButtons() {
-      const today = new Date();
-      today.setHours(0,0,0,0);
-      // Mahalaya: enabled from now till 21 Sep 2025
-      const mahalayaEnd = new Date(2025,8,21); mahalayaEnd.setHours(0,0,0,0);
-      document.getElementById('btn-mahalaya').disabled = today > mahalayaEnd;
-      // Others: only on their date
-      Object.entries(days).forEach(([key, date]) => {
-        date = new Date(date); date.setHours(0,0,0,0);
-        const btn = document.getElementById('btn-' + key);
-        if (key !== 'mahalaya') {
-          btn.disabled = !(today.getFullYear() === date.getFullYear()
-                        && today.getMonth() === date.getMonth()
-                        && today.getDate() === date.getDate());
-        }
-      });
-    }
-    enableButtons();
+  <div class="kite-bg" aria-hidden="true"></div>
 
-    // Confetti setup
-    const jsConfetti = new JSConfetti();
+  <div class="container" role="main" aria-labelledby="title">
+    <h1 id="title">Vishwakrma Puja Wishes ✨</h1>
 
-    function showDay(dayId) {
-      document.getElementById('welcome').textContent =
-        "Happy " + capitalize(dayId) + ", " + userName + "!";
-      document.querySelectorAll('.day-content').forEach(dc => {
-        dc.classList.remove('active');
-        dc.style.display = 'none';
-      });
-      const active = document.getElementById(dayId);
-      active.style.display = 'block';
-      setTimeout(() => active.classList.add('active'), 10);
-      // Personalize
-      if (document.getElementById("name-" + dayId))
-        document.getElementById("name-" + dayId).textContent = userName;
-      // Confetti time! Use fun party emoji and colors
-      jsConfetti.addConfetti({
-        emojis:['🪔','🥁','🎉','🌸','🔔','🕊','🌺'],
-        confettiRadius: 5,
-        confettiNumber: 70,
-        emojiSize: 42,
-        confettiColors:[
-          "#fa514c","#ff9900","#ffd600","#ba181b","#8c452b","#fdba01"
-        ]
-      });
+    <div class="toggle-container">
+      <label for="modeToggle" class="toggle-label" id="modeLabel" aria-live="polite">Toggle Dark / Light Mode</label>
+      <input type="checkbox" id="modeToggle" class="toggle-checkbox" aria-checked="false" aria-labelledby="modeLabel" />
+    </div>
+
+    <input type="text" id="nameInput" aria-describedby="feedback" placeholder="Enter your friend's name" autocomplete="off" />
+    <div id="feedback" class="feedback" aria-live="polite"></div>
+
+    <button id="viewWishBtn" aria-describedby="wish" type="button" disabled>View Wish</button>
+    <button id="shareBtn" type="button" aria-label="Share the Vishwakrma Puja wish" style="display:none;">Share Wish</button>
+
+    <div id="wish" aria-live="polite" aria-atomic="true" aria-relevant="additions"></div>
+  </div>
+
+  <footer role="contentinfo" aria-label="Footer with author name">Made by PRATIK</footer>
+
+<script>
+  // Wishes array - multiple wishes for variety
+  const wishes = [
+    "wishing you a blessed and prosperous Vishwakrma Puja! May your creativity and craftsmanship bring you success and happiness.",
+    "may Lord Vishwakrma bless your hands with skill and your heart with peace this Puja.",
+    "sending you prayers for brilliance and success on this divine Vishwakrma Puja day.",
+    "may your hard work and talent shine bright with Vishwakrma's blessings.",
+    "hope your Vishwakrma Puja is filled with joy, inspiration, and beautiful creations ahead."
+  ];
+
+  const nameInput = document.getElementById('nameInput');
+  const feedback = document.getElementById('feedback');
+  const viewWishBtn = document.getElementById('viewWishBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  const wishDiv = document.getElementById('wish');
+  const modeToggle = document.getElementById('modeToggle');
+  const body = document.body;
+
+  // Sound effect setup
+  const audio = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg'); // playful chime sound
+
+  // Name validation: only letters, spaces allowed, minimum 1 character
+  function validateName(name) {
+    return /^[A-Za-z\s]{1,40}$/.test(name);
+  }
+
+  // Update validation feedback and button state real-time
+  nameInput.addEventListener('input', () => {
+    const val = nameInput.value.trim();
+    if (val.length === 0) {
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      viewWishBtn.disabled = true;
+    } else if (validateName(val)) {
+      feedback.textContent = 'Looks good!';
+      feedback.className = 'feedback valid';
+      viewWishBtn.disabled = false;
+    } else {
+      feedback.textContent = 'Please enter only letters and spaces.';
+      feedback.className = 'feedback invalid';
+      viewWishBtn.disabled = true;
     }
-    function capitalize(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
+    // Reset wish and share button if changing input
+    wishDiv.textContent = '';
+    shareBtn.style.display = 'none';
+  });
+
+  // Generate random integer helper
+  function randomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  // Personalized style based on name
+  function styleWish(name) {
+    const colors = ['#FF6347','#FFD700','#00FA9A','#1E90FF','#FF69B4','#FF8C00','#00CED1'];
+    // Color by sum char code mod colors length
+    let sum = 0;
+    for(let ch of name){ sum += ch.charCodeAt(0); }
+    return colors[sum % colors.length];
+  }
+
+  // Confetti effect function
+  function createConfetti() {
+    const confettiCount = 120;
+    for(let i = 0; i < confettiCount; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.backgroundColor = hsl(${Math.random()*360}, 70%, 70%);
+      confetti.style.animationDuration = (2 + Math.random()*2) + 's';
+      confetti.style.width = confetti.style.height = (5 + Math.random()*7) + 'px';
+      document.body.appendChild(confetti);
+
+      setTimeout(() => {
+        confetti.remove();
+      }, 4000);
     }
-    document.getElementById('btn-mahalaya').onclick = () => showDay('mahalaya');
-    document.getElementById('btn-panchami').onclick = () => showDay('panchami');
-    document.getElementById('btn-shashthi').onclick = () => showDay('shashthi');
-    document.getElementById('btn-saptami').onclick = () => showDay('saptami');
-    document.getElementById('btn-ashtami').onclick = () => showDay('ashtami');
-    document.getElementById('btn-navami').onclick = () => showDay('navami');
-    document.getElementById('btn-dashami').onclick = () => showDay('dashami');
-    // Attempt autoplay music, some browsers may wait for a click
-    window.addEventListener('load', function() {
-      const audio = document.getElementById("puja-music");
-      if(audio) { audio.play().catch(()=>{}); }
-    });
-  </script>
+  }
+
+  // Show wish function
+  viewWishBtn.addEventListener('click', () => {
+    const name = nameInput.value.trim();
+    if (!validateName(name)) {
+      wishDiv.textContent = "Invalid name entered.";
+      shareBtn.style.display = 'none';
+      return;
+    }
+    // Pick a random wish
+    const wishText = wishes[randomInt(wishes.length)];
+    const styledColor = styleWish(name);
+
+    wishDiv.textContent = Dear ${name}, ${wishText};
+    wishDiv.style.color = styledColor;
+
+    // Play sound
+    audio.currentTime = 0;
+    audio.play();
+
+    // Show confetti
+    createConfetti();
+
+    // Show share button
+    shareBtn.style.display = 'block';
+    shareBtn.textContent = 'Share Wish';
+  });
+
+  // Share functionality (copies text to clipboard or uses Web Share)
+  shareBtn.addEventListener('click', async () => {
+    const text = wishDiv.textContent || '';
+    if (!text) return;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Vishwakrma Puja Wish',
+          text: text
+        });
+      } catch (err) {
+        alert('Sharing canceled or failed.');
+      }
+    } else if (navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('Wish text copied to clipboard!');
+      } catch (err) {
+        alert('Failed to copy text.');
+      }
+    } else {
+      alert('Sharing not supported on this device.');
+    }
+  });
+
+  // Dark/light mode toggle
+  modeToggle.addEventListener('change', () => {
+    if (modeToggle.checked) {
+      body.classList.add('light');
+      modeToggle.setAttribute('aria-checked', 'true');
+    } else {
+      body.classList.remove('light');
+      modeToggle.setAttribute('aria-checked', 'false');
+    }
+  });
+
+</script>
 </body>
 </html>
 
